@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Route } from 'react-router-dom'
 import {Home,Collection,About, Contact, Product, Cart, Login, PlaceOrder, Order} from './Pages/Allpage'
 import Navbar from './Components/Navbar'
+import Footer from './Components/Footer'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/place-order' element={<PlaceOrder/>}/>
         <Route path='/order' element={<Order/>}/>
       </Routes>
+      <Footer/>
     </div>
   )
 }

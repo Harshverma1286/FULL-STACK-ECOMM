@@ -4,6 +4,7 @@ import Latestcollection from '../Components/Latestcollection'
 import BestSeller from '../Components/BestSeller'
 import OurPolicy from '../Components/OurPolicy'
 import NewsLettersBox from '../Components/NewsLettersBox'
+import Footer from '../Components/Footer'
 
 function Home() {
   return (
