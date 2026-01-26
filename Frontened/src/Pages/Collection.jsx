@@ -6,7 +6,7 @@ import {Title} from '../Components/Title';
 import {CardsCollection} from '../Components/Cardscollection';
 
 function Collection() {
-  const {products} = useContext(shopcontext);
+  const {products,search, showsearch} = useContext(shopcontext);
 
   const [visible,setvisible] = useState(false);
 
@@ -44,6 +44,10 @@ function Collection() {
   const applyfilter = (e)=>{
     let productcopy = products.slice(0,10);
 
+    if(showsearch && search){
+      productcopy = productcopy.filter(item=> item.name.toLowerCase().includes(search.toLowerCase()));
+    }
+
     if(category.length>0){
       productcopy = productcopy.filter((item)=> category.includes(item.category))
     } 
@@ -75,7 +79,7 @@ function Collection() {
 
   useEffect(()=>{
     applyfilter();
-  },[category,subcategory]);
+  },[category,subcategory,search,showsearch]);
 
   useEffect(()=>{
     sortproduct();
