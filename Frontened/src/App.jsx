@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom'
 import {Home,Collection,About, Contact, Product, Cart, Login, PlaceOrder, Order} from './Pages/Allpage'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
-
 import {ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

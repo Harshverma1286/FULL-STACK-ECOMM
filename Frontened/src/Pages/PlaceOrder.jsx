@@ -8,4 +8,4 @@ function PlaceOrder() {
   )
 }
 
-export default PlaceOrder
+export default PlaceOrder;

@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { products } from "../assets/assets";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const shopcontext = createContext();
 
@@ -13,6 +14,8 @@ const Shopcontextprovider = ({children})=>{
     const [showsearch,setshowserach] = useState(false);
 
     const[cartitems,setcartitems] = useState({});
+
+    const navigate = useNavigate();
 
 
     const addtocart = async(itemid,productsize)=>{
@@ -64,6 +67,24 @@ const Shopcontextprovider = ({children})=>{
         setcartitems(cartdata);
     }
 
+    const getcartamount = ()=>{
+        let totalamount = 0;
+
+        for (const items in cartitems){
+            let iteminfo = products.find((product)=> product._id===items);
+            for(const item in cartitems[items]){
+                try {
+                   if(cartitems[items][item]>0){
+                    totalamount+= iteminfo.price* cartitems[items][item];
+                   } 
+                } catch (error) {
+                    
+                }
+            }
+        }
+        return totalamount;
+    }
+
     const value = {
         products,
         currency,
@@ -72,7 +93,12 @@ const Shopcontextprovider = ({children})=>{
         setsearch,
         showsearch,
         setshowserach,
-        cartitems,addtocart,getcartcount
+        cartitems,
+        addtocart,
+        getcartcount,
+        updatequantity,
+        getcartamount,
+        navigate
     }
 
 
