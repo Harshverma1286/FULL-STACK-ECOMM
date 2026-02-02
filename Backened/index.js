@@ -8,6 +8,8 @@ import 'dotenv/config';
 import connectdb from './DB/index.js';
 import mongoose from 'mongoose';
 
+import connectcloudinary from '../Backened/DB/cloudinary.js';
+
 
 
 connectdb().then(
@@ -26,3 +28,5 @@ connectdb().then(
         console.log("err",err);
     }
 )
+
+connectcloudinary();
