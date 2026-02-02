@@ -2,7 +2,7 @@ import express from 'express';
 
 const userrouter = express.Router();
 
-import { loginuser , registeruser , adminlogin } from '../controllers/usercontroller';
+import { loginuser , registeruser , adminlogin } from '../controllers/usercontroller.js';
 
 
 

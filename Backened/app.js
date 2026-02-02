@@ -12,9 +12,13 @@ app.use(express.urlencoded({extended:true}));
 
 app.use(express.static("public"));
 
-import userrouter from './routes/userroutes';
+import userrouter from './routes/userroutes.js';
+
+import productrouter from './routes/productroutes.js';
 
 app.use('/api/v1/users',userrouter);
+
+app.use('/api/v1/products',productrouter);
 
 
 export default app;
