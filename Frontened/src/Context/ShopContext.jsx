@@ -10,10 +10,14 @@ const Shopcontextprovider = ({children})=>{
     const currency = '$';
     const delivery_fee = 10;
 
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
     const [search,setsearch] = useState('');
     const [showsearch,setshowserach] = useState(false);
 
     const[cartitems,setcartitems] = useState({});
+
+    const [products,setproducts] = useState([]);
 
     const navigate = useNavigate();
 
@@ -83,6 +87,22 @@ const Shopcontextprovider = ({children})=>{
             }
         }
         return totalamount;
+    }
+
+    const getproductdata = async()=>{
+        try {
+            const response = await axios.get(backendUrl+'/api/v1/products');
+            if(response.data.success){
+                setproducts(response.data.products)
+            }
+            else{
+                toast.error(response.data.message);
+            }
+            
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
+        }
     }
 
     const value = {

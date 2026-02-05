@@ -79,7 +79,7 @@ function Collection() {
 
   useEffect(()=>{
     applyfilter();
-  },[category,subcategory,search,showsearch]);
+  },[category,subcategory,search,showsearch,products]);
 
   useEffect(()=>{
     sortproduct();
