@@ -18,7 +18,7 @@ function Login({settoken}) {
         try {
             e.preventDefault();
 
-            const response = await axios.post(backendurl+'/api/user/admin',{email,password}); 
+            const response = await axios.post(backendurl+'/api/v1/users/admin',{email,password}); 
             // axios helps us to send http request at backened
 
             if(response.data.success){

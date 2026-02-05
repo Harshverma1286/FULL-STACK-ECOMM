@@ -13,6 +13,8 @@ import Login from './Components/Login';
 
 export const backendurl = import.meta.env.VITE_BACKEND_URL;
 
+export const currency = '$';
+
 function App() {
   const [token,settoken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '');
 
