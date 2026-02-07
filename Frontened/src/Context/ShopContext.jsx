@@ -48,6 +48,16 @@ const Shopcontextprovider = ({children})=>{
         }
 
         setcartitems(cartdata);
+
+
+        if(token){
+            try {
+                await axios.post(backendUrl,'/api/v1/carts/addtocart',{itemid,size},{headers:{token}});
+            } catch (error) {
+                console.log(error);
+                toast.error(error.message);
+            }
+        }
     }
 
     const getcartcount = ()=>{
@@ -71,6 +81,15 @@ const Shopcontextprovider = ({children})=>{
         cartdata[itemid][size] = quantity;
 
         setcartitems(cartdata);
+
+        if(token){
+            try {
+              await axios.post(backendUrl,'/api/v1/carts/updatecart',{itemid,size,quantity},{headers:{token}})  
+            } catch (error) {
+                console.log(error);
+                toast.error(error.message);
+            }
+        }
     }
 
     const getcartamount = ()=>{
@@ -84,7 +103,8 @@ const Shopcontextprovider = ({children})=>{
                     totalamount+= iteminfo.price* cartitems[items][item];
                    } 
                 } catch (error) {
-                    
+                    console.log(error);
+                    toast.error(error.message); 
                 }
             }
         }
@@ -107,9 +127,23 @@ const Shopcontextprovider = ({children})=>{
         }
     }
 
+    const getusercart = async(token)=>{
+        try {
+            const response = await axios.post(backendUrl,'/api/v1/carts/getusercart',{},{headers:{token}});
+
+            if(response.data.success){
+                setcartitems(response.data.cartdata);
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
+        }
+    }
+
     useEffect(()=>{
-        if(!token,localStorage.getItem('token')){
+        if(!token && localStorage.getItem('token')){
             settoken(localStorage.getItem('token'));
+            getusercart(localStorage.getItem('token'));
         }
     },[])
 
