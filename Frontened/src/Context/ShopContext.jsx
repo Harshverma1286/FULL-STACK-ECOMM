@@ -165,7 +165,7 @@ const Shopcontextprovider = ({children})=>{
         token,
         settoken,
         backendUrl,
-        setcartitems
+        setcartitems,cartitems
     }
 
 
