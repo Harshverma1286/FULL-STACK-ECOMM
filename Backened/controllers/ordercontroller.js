@@ -36,7 +36,13 @@ const placeorderrazorpay = async(req,res)=>{
 }//using razorpay
 
 const allorders = async(req,res)=>{
-
+    try {
+        const orders = await ordermodel.find({});
+        res.json({success:true,orders});
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:error.message});
+    }
 }// all order for admin panel
 
 const userorders = async(req,res)=>{
@@ -53,7 +59,11 @@ const userorders = async(req,res)=>{
 }//all orders for frontened
 
 const updatestatus = async(req,res)=>{
-
+    try {
+        
+    } catch (error) {
+        
+    }
 }// only admins
 
 export {placeorder,placeorderstripe,placeorderrazorpay,allorders,userorders,updatestatus}
