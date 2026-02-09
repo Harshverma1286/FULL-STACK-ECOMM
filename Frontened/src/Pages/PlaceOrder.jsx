@@ -71,6 +71,19 @@ function PlaceOrder() {
           }
           break;
 
+          case 'stripe':
+            const responsestripe = await axios.post(backendUrl+'/api/v1/orders/stripe',orderdata,{headers:{token}});
+
+            if(responsestripe.data.success){
+              const {session_url} = responsestripe.data;
+
+              window.location.replace(session_url);
+            }
+            else{
+              toast.error(responsestripe.data.message);
+            }
+            break;
+
           default:
             break;
       }

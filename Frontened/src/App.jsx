@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { Route } from 'react-router-dom'
-import {Home,Collection,About, Contact, Product, Cart, Login, PlaceOrder, Order} from './Pages/Allpage'
+import {Home,Collection,About, Contact, Product, Cart, Login, PlaceOrder, Order,Verify} from './Pages/Allpage'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
 import {ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SearchBar from '../src/Components/Searchbar'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
       <ToastContainer/>
       <Navbar/>
+      <SearchBar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/collection' element={<Collection/>}/>
@@ -22,6 +24,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/place-order' element={<PlaceOrder/>}/>
         <Route path='/order' element={<Order/>}/>
+        <Route path='/verify' element={<Verify/>}/>
       </Routes>
       <Footer/>
     </div>
