@@ -4,6 +4,7 @@ import Carttotal from '../Components/Carttotal';
 import { assets } from '../assets/assets';
 import { shopcontext } from '../Context/ShopContext';
 import { toast } from 'react-toastify';
+
 function PlaceOrder() {
 
   const [method,setmethod] = useState('COD');
@@ -27,6 +28,14 @@ function PlaceOrder() {
     setformdata(data=> ({...data,[name]:value}));
   }
 
+  const initpay = (order)=>{
+    const options ={
+      key:import.meta.env.VITE_RAZORPAY_KEY_ID,
+      amount:order.amount,
+      currency:order.currency,
+      
+    }
+  }
   const {navigate,backendUrl,token,cartitems,setcartitems,getcartamount,delivery_fee,products} = useContext(shopcontext);
 
   const onsubmithandler = async(e)=>{
@@ -83,6 +92,15 @@ function PlaceOrder() {
               toast.error(responsestripe.data.message);
             }
             break;
+
+            case 'razorpay':
+              const  responserazorpay = await axios.post(backendUrl+'/api/v1/orders/razorpay',orderdata,{headers:{token}});
+
+              if(responserazorpay.data.success){
+                const 
+              }
+
+              break;
 
           default:
             break;

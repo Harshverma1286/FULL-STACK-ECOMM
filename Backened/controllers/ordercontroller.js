@@ -2,9 +2,15 @@
 import ordermodel from "../models/ordermodels.js"
 import usermodel from '../models/usermodel.js'
 import Stripe from 'stripe';
+import razorpay from 'razorpay'
 
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+const razorpayinstance = new razorpay({
+    key_id:process.env.RAZORPAY_KEY_ID,
+    key_secret:process.env.RAZORPAY_KEY_SECRET,
+})
 
 const currency = "inr";
 const Delivery_charges = 10;
@@ -116,7 +122,40 @@ const verifystripe = async(req,res)=>{
 }
 
 const placeorderrazorpay = async(req,res)=>{
+    try {
+        const {userId,items,amount,address} = req.body;
 
+        const orderdata = {
+            userId,
+            items,
+            address,
+            amount,
+            paymentMethod:"Razorpay",
+            payment:false,
+            date:Date.now()
+        }
+
+        const neworder = new ordermodel(orderdata);
+
+        await neworder.save();
+
+        const options = {
+            amount:amount*100,
+            currency:currency.toUpperCase(),
+            receipt:neworder._id.toString(), 
+        }
+
+        await razorpayinstance.orders.create(options,(error,order)=>{
+            if(error){
+                console.log(error);
+                return res.json({success:false,message:error})
+            }
+            res.json({success:true,order})
+        })
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:error.message})
+    }
 }//using razorpay
 
 const allorders = async(req,res)=>{
