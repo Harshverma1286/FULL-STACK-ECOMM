@@ -97,7 +97,6 @@ function PlaceOrder() {
               const  responserazorpay = await axios.post(backendUrl+'/api/v1/orders/razorpay',orderdata,{headers:{token}});
 
               if(responserazorpay.data.success){
-                const 
               }
 
               break;
