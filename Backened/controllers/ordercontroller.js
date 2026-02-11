@@ -158,6 +158,30 @@ const placeorderrazorpay = async(req,res)=>{
     }
 }//using razorpay
 
+
+const verifyrazorpay = async(req,res)=>{
+    try {
+        const {userId,razorpay_orderid} = req.body;
+
+        const orderinfo = await razorpayinstance.orders.fetch(razorpay_orderid);
+
+        if(orderinfo.status ==="paid"){
+            await ordermodel.findByIdAndUpdate(orderinfo.receipt,{payment:true});
+            await ordermodel.findByIdAndUpdate(userId,{cartData:{}});
+
+            res.json({success:true,message:"payment successfull"});
+        }
+
+        else{
+            res.json({success:false,message:"payment failed"});
+        }
+
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:error.message})
+    }
+}
+
 const allorders = async(req,res)=>{
     try {
         const orders = await ordermodel.find({});
@@ -194,4 +218,4 @@ const updatestatus = async(req,res)=>{
     }
 }// only admins
 
-export {placeorder,placeorderstripe,placeorderrazorpay,allorders,userorders,updatestatus}
+export {placeorder,placeorderstripe,placeorderrazorpay,allorders,userorders,updatestatus,verifystripe,verifyrazorpay}

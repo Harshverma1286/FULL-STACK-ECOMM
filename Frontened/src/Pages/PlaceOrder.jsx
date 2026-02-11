@@ -33,8 +33,28 @@ function PlaceOrder() {
       key:import.meta.env.VITE_RAZORPAY_KEY_ID,
       amount:order.amount,
       currency:order.currency,
-      
+      name:"Order payment",
+      description:'Order payment',
+      order_id:order.id,
+      receipt:order.receipt,
+      handler:async ()=>{
+        console.log(response);
+        try {
+          const {data} = await axios.post(backendUrl+'/api/v1/orders/verifyrazorpay',response,{headers:{token}});
+
+          if(data.success){
+            navigate('orders');
+            setcartitems({});
+          }
+        } catch (error) {
+          console.log(error);
+          toast.error(error);
+        }
+      }
     }
+
+    const rzp = new window.Razorpay(options);
+    rzp.open();
   }
   const {navigate,backendUrl,token,cartitems,setcartitems,getcartamount,delivery_fee,products} = useContext(shopcontext);
 
@@ -97,6 +117,7 @@ function PlaceOrder() {
               const  responserazorpay = await axios.post(backendUrl+'/api/v1/orders/razorpay',orderdata,{headers:{token}});
 
               if(responserazorpay.data.success){
+                initpay(responserazorpay.data.order)
               }
 
               break;
