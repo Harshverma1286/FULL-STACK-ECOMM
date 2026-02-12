@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import Navbar from './Components/Navbar'
-import './App.css'
 import Sidebar from './Components/Sidebar'
 import {Routes,Route} from 'react-router-dom';
 import Add from '../src/Pages/Add';
@@ -12,6 +11,7 @@ import Login from './Components/Login';
 
 
 export const backendurl = import.meta.env.VITE_BACKEND_URL;
+
 
 export const currency = '$';
 

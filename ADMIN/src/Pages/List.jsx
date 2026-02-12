@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { backendurl, currency } from '../App';
+import backendurl from '../App';
+import  currency from '../App';
 import { toast } from 'react-toastify';
 
 function List({token}) {

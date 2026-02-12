@@ -7,7 +7,7 @@ function Login() {
 
   const [currentstate, setcurrentstate] = useState('Login');
 
-  const [token,settoken,navigate,backendUrl] = useContext(shopcontext);
+  const {token,settoken,navigate,backendUrl} = useContext(shopcontext);
 
   const [name,setname] = useState('');
   const [email,setemail] = useState('');

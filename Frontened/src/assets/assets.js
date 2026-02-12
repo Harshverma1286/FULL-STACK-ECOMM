@@ -55,7 +55,7 @@ import p_img51 from './p_img51.png'
 import p_img52 from './p_img52.png'
 
 
-import Logo from './LOGO_img.png'
+import logo from './logo.png'
 import hero_img from './hero_img.png'
 import cart_icon from './cart_icon.png'
 import bin_icon from './bin_icon.png'
@@ -74,8 +74,8 @@ import razorpay_logo from './razorpay_logo.png'
 import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
 
-export const assets = {
-    Logo,
+const assets = {
+    logo,
     hero_img,
     cart_icon,
     dropdown_icon,
@@ -95,7 +95,7 @@ export const assets = {
     cross_icon
 }
 
-export const products = [
+const products = [
     {
         _id: "aaaaa",
         name: "Women Round Neck Cotton Top",
@@ -721,3 +721,4 @@ export const products = [
     }
 
 ]
+export {products,assets};

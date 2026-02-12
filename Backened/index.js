@@ -1,12 +1,9 @@
-import express from 'express';
-
-import cors from 'cors';
+import 'dotenv/config';
 
 import app from '../Backened/app.js';
 
-import 'dotenv/config';
+
 import connectdb from './DB/index.js';
-import mongoose from 'mongoose';
 
 import connectcloudinary from '../Backened/DB/cloudinary.js';
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import Title from '../Components/Title';
-import assets from '../assets/assets';
+import {assets} from '../assets/assets.js';
 
 import NewsLetterBox from '../Components/NewsLettersBox';
 

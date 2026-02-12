@@ -3,8 +3,8 @@ import express from 'express';
 const orderrouter = express.Router();
 
 import {placeorder,placeorderstripe,placeorderrazorpay,allorders,userorders,updatestatus,verifystripe, verifyrazorpay} from '../controllers/ordercontroller.js';
-import adminauth from '../middleware/adminauth';
-import authuser from '../middleware/auth';
+import adminauth from '../middleware/adminauth.js';
+import authuser from '../middleware/auth.js';
 
 orderrouter.post('/list',adminauth,allorders);
 

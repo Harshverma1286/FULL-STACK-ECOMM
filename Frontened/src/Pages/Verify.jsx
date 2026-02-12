@@ -1,10 +1,10 @@
 import React from 'react'
 import { useContext } from 'react';
 import { shopcontext } from '../Context/ShopContext';
+import backendurl from '../Context/ShopContext';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { backendurl } from '../../../ADMIN/src/App';
 import { toast } from 'react-toastify';
 import axios from 'axios'
 

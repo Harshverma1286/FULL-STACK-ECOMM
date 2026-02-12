@@ -3,9 +3,10 @@ import { useEffect } from 'react';
 import { useState } from 'react'
 
 import axios from 'axios'
-import {backendUrl, currency} from '../App'
+import backendUrl from '../App'
+import  currency  from '../App';
 import {toast} from 'react-toastify'
-import { assets } from '../assets/assets';
+import { assets } from '../assets/assets.js';
 function Order({token}) {
 
   const [orders,setorders] = useState([]);

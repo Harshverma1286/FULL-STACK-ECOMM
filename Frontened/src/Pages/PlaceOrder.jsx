@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import Title from '../Components/Title';
 import Carttotal from '../Components/Carttotal';
-import { assets } from '../assets/assets';
+import { assets } from '../assets/assets.js';
 import { shopcontext } from '../Context/ShopContext';
 import { toast } from 'react-toastify';
 
