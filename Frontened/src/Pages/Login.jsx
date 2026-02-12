@@ -21,6 +21,7 @@ function Login() {
         const response = await axios.post(backendUrl + "/api/v1/users/register",{name,email,password});
 
         if(response.data.success){
+          toast.success('Account created successfully');
           settoken(response.data.token);
           localStorage.setItem('token',response.data.token);
         }
