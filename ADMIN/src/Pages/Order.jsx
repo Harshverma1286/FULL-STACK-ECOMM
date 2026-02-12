@@ -3,11 +3,13 @@ import { useEffect } from 'react';
 import { useState } from 'react'
 
 import axios from 'axios'
-import backendUrl from '../App'
 import  currency  from '../App';
 import {toast} from 'react-toastify'
 import { assets } from '../assets/assets.js';
 function Order({token}) {
+
+  const backendurl = import.meta.env.VITE_BACKEND_URL;
+
 
   const [orders,setorders] = useState([]);
 
@@ -17,7 +19,7 @@ function Order({token}) {
     }
 
     try {
-      const response = await axios.post(backendUrl+'/api/v1/orders/list',{},{headers:{token}});
+      const response = await axios.post(`${backendurl}/api/v1/orders/list`,{},{headers:{token}});
 
       if(response.data.success){
         setorders(response.data.orders.reverse());
@@ -32,7 +34,7 @@ function Order({token}) {
 
   const statushandler = async(event,orderId)=>{
     try {
-      const response = await axios.post(backendUrl+'/api/v1/orders/status',{orderId,status:event.target.value}, {headers:{token}});
+      const response = await axios.post(`${backendurl}/api/v1/orders/status`,{orderId,status:event.target.value}, {headers:{token}});
 
       if(response.data.success){
         await fetchallorders();

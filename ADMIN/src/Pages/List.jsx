@@ -1,16 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import backendurl from '../App';
 import  currency from '../App';
 import { toast } from 'react-toastify';
 
 function List({token}) {
 
+  const backendurl = import.meta.env.VITE_BACKEND_URL;
+
   const [list,setlist] = useState([]);
 
   const fetchlist = async()=>{
     try {
-      const response = await axios.post(backendurl,"/api/v1/products/listproduct");
+      const response = await axios.post(`${backendurl}/api/v1/products/listproduct`);
 
       if(response.data.success){
         setlist(response.data.products);
@@ -29,7 +30,7 @@ function List({token}) {
 
   const removeproduct = async(id)=>{
     try {
-      const response = await axios.delete(backendurl,"/api/v1/products/removeproduct",{id},{headers:{token}});
+      const response = await axios.delete(`${backendurl}/api/v1/products/removeproduct`,{data: { id }, headers: { token }});
 
       if(response.data.success){
         toast.success(response.data.message);

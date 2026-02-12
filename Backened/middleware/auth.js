@@ -4,7 +4,7 @@ const authuser = async(req,res,next)=>{
     const {token} = req.headers;
 
     if(!token){
-        return res.json({success:false,message:"not authorized login again"});
+        return res.json({success:false,message:"not authorized login again in auth"});
     }
 
     try {
