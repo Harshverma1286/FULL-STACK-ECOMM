@@ -37,7 +37,7 @@ function Collection() {
       setSubcategory(prev=> prev.filter(item=> item!==e.target.value));
     }
     else{
-      setSubcategory([...prev,e.target.value]);
+      setSubcategory(prev=>[...prev,e.target.value]);
     }
   }
 

@@ -19,13 +19,16 @@ const placeorder = async(req,res)=>{
     try {
         const {userId,items,amount ,address} = req.body;
 
+        console.log(userId);
+
         const orderdata = {
             userId,
             items,
             amount,
             paymentMethod:"COD",
             payment:false,
-            date:Date.now()
+            date:Date.now(),
+            address
         }
 
         const neworder = await new ordermodel(orderdata);
@@ -54,7 +57,8 @@ const placeorderstripe = async(req,res)=>{
             amount,
             paymentMethod:"Stripe",
             payment:false,
-            date:Date.now()
+            date:Date.now(),
+            address
         }
 
         const neworder = await new ordermodel(orderdata);

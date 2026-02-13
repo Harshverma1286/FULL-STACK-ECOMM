@@ -4,7 +4,7 @@ import Carttotal from '../Components/Carttotal';
 import { assets } from '../assets/assets.js';
 import { shopcontext } from '../Context/ShopContext';
 import { toast } from 'react-toastify';
-
+import axios from 'axios';
 function PlaceOrder() {
 
   const [method,setmethod] = useState('COD');
@@ -37,7 +37,7 @@ function PlaceOrder() {
       description:'Order payment',
       order_id:order.id,
       receipt:order.receipt,
-      handler:async ()=>{
+      handler:async (response)=>{
         console.log(response);
         try {
           const {data} = await axios.post(backendUrl+'/api/v1/orders/verifyrazorpay',response,{headers:{token}});
@@ -87,12 +87,12 @@ function PlaceOrder() {
       }
 
       switch(method){
-        case 'cod':
+        case 'COD':
           const response = await axios.post(backendUrl+'/api/v1/orders/place',orderdata,{headers:{token}});
 
           if(response.data.success){
             setcartitems({});
-            navigate('/orders');
+            navigate('/order');
           }
 
           else{
@@ -145,7 +145,7 @@ function PlaceOrder() {
         </div>
 
         <div className='flex gap-3'>
-          <input required onChange={onchangehandler} name='FirstName' value={formdata.firstName} type="text" placeholder='first name' className='border border-gray-300 rounded py-1.5 px-3.5 w-full' />
+          <input required onChange={onchangehandler} name='firstName' value={formdata.firstName} type="text" placeholder='first name' className='border border-gray-300 rounded py-1.5 px-3.5 w-full' />
           <input required onChange={onchangehandler} name='lastName' value={formdata.lastName} type="text" placeholder='Last name' className='border border-gray-300 rounded py-1.5 px-3.5 w-full' />
         </div>
         <input required onChange={onchangehandler} 

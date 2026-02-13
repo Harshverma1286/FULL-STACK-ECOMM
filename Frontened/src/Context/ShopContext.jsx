@@ -67,7 +67,7 @@ const Shopcontextprovider = ({children})=>{
         for(const items in cartitems){
             for(const item in cartitems[items]){
                 try {
-                    if(cartitems[item]>0) count+=cartitems[items][item];
+                    if(cartitems[items][item]>0) count+=cartitems[items][item];
                 } catch (error) {
                     
                 }
