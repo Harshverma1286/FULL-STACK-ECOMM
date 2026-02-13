@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { shopcontext } from '../Context/ShopContext'
+import Title from '../Components/Title';
 import Cardscollection from './Cardscollection';
 
 function Relatedproducts({category,subCategory}) {

@@ -5,8 +5,7 @@ import app from '../Backened/app.js';
 
 import connectdb from './DB/index.js';
 
-import connectcloudinary from '../Backened/DB/cloudinary.js';
-
+import connectcloudinary from '../Backened/DB/cloudinary.js'
 
 
 connectdb().then(

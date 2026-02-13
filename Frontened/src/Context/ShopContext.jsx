@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { products } from "../assets/assets";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
@@ -53,7 +52,8 @@ const Shopcontextprovider = ({children})=>{
 
         if(token){
             try {
-                await axios.post(backendUrl+'/api/v1/carts/addtocart',{itemid,size},{headers:{token}});
+                await axios.post(backendUrl+'/api/v1/carts/addtocart',{itemid,productsize},{headers:{token}});
+                toast.success("Product added to cart successfully");
             } catch (error) {
                 console.log(error);
                 toast.error(error.message);
@@ -85,7 +85,7 @@ const Shopcontextprovider = ({children})=>{
 
         if(token){
             try {
-              await axios.post(backendUrl,'/api/v1/carts/updatecart',{itemid,size,quantity},{headers:{token}})  
+              await axios.post(backendUrl+'/api/v1/carts/updatecart',{itemid,size,quantity},{headers:{token}})  
             } catch (error) {
                 console.log(error);
                 toast.error(error.message);
@@ -113,8 +113,9 @@ const Shopcontextprovider = ({children})=>{
     }
 
     const getproductdata = async()=>{
+        console.log('backened url : ',backendUrl);
         try {
-            const response = await axios.get(backendUrl+'/api/v1/products');
+            const response = await axios.post(backendUrl+'/api/v1/products/listproduct');
             if(response.data.success){
                 setproducts(response.data.products)
             }
@@ -130,7 +131,7 @@ const Shopcontextprovider = ({children})=>{
 
     const getusercart = async(token)=>{
         try {
-            const response = await axios.post(backendUrl+'/api/v1/carts/getusercart',{},{headers:{token}});
+            const response = await axios.get(backendUrl+'/api/v1/carts/getusercart',{headers:{token}});
 
             if(response.data.success){
                 setcartitems(response.data.cartdata);
@@ -146,6 +147,10 @@ const Shopcontextprovider = ({children})=>{
             settoken(localStorage.getItem('token'));
             getusercart(localStorage.getItem('token'));
         }
+    },[])
+
+    useEffect(()=>{
+        getproductdata();
     },[])
 
     const value = {
