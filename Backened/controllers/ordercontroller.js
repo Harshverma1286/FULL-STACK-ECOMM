@@ -196,18 +196,19 @@ const allorders = async(req,res)=>{
     }
 }// all order for admin panel
 
-const userorders = async(req,res)=>{
-    try {
-        const {userId} = req.body;
+const userorders = async (req, res) => {
+  try {
+    const orders = await ordermodel.find({ user: req.user.id });
 
-        const orders = await ordermodel.findById({userId});
+    res.json({ success: true, orders });
 
-        res.json({success:true,orders});
-    } catch (error) {
-        console.log(error);
-        res.json({success:false,message:error.message});
-    }
-}//all orders for frontened
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+
 
 const updatestatus = async(req,res)=>{
     try {

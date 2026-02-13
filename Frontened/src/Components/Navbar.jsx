@@ -80,7 +80,7 @@ function Navbar() {
               </p>
 
               <p
-                onClick={() => navigate('/orders')}
+                onClick={() => navigate('/order')}
                 className='px-4 py-2 hover:bg-gray-100 cursor-pointer'
               >
                 Orders

@@ -3,7 +3,8 @@ import { shopcontext } from '../Context/ShopContext'
 import Title from '../Components/Title';
 import { useState } from 'react';
 import { useEffect } from 'react';
-
+import axios from 'axios';
+import { toast } from 'react-toastify';
 function Order() {
   const {backendUrl,token,currency} = useContext(shopcontext);
   const [orderdata,setorderdata] = useState([]);
@@ -31,13 +32,15 @@ function Order() {
       setorderdata(allorderitem.reverse());
     }
     } catch (error) {
-      
+      console.log(error);
+      toast.error(error.message)
     }
   }
 
   useEffect(()=>{
     loadorderdata();
   },[token]);
+  
   return (
     <div className='border-t pt-16'>
 
