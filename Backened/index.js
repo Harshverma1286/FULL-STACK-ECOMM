@@ -4,15 +4,24 @@ import app from '../Backened/app.js';
 import connectdb from './DB/index.js';
 import connectcloudinary from '../Backened/DB/cloudinary.js';
 
-// Initialize connections once
-connectdb()
-  .then(() => {
-    console.log("MongoDB connected");
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
-  });
+let isConnected = false;
 
-connectcloudinary();
+async function initialize() {
+  try {
+    if (!isConnected) {
+      await connectdb();
+      await connectcloudinary();
+      isConnected = true;
+      console.log("MongoDB and Cloudinary connected");
+    }
+  } catch (error) {
+    console.error("Initialization error:", error);
+    throw error;
+  }
+}
 
-export default app;
+// This ensures DB connects before handling requests
+export default async function handler(req, res) {
+  await initialize();
+  return app(req, res);
+}
