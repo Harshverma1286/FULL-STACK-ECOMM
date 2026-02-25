@@ -90,7 +90,7 @@ const placeorderstripe = async(req,res)=>{
         const session = await stripe.checkout.sessions.create({
             success_url:`${origin}/verify?success=true&orderId=${neworder._id}`,
             cancel_url:`${origin}/verify?success=false&orderId=${neworder._id}`,
-            lineitems,
+            line_items: lineitems,
             mode:'payment'
         })
 
