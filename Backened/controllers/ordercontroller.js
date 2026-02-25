@@ -4,7 +4,7 @@ import usermodel from '../models/usermodel.js'
 import Stripe from 'stripe';
 import razorpay from 'razorpay'
 
-console.log(process.env.STRIPE_SECRET_KEY);
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const razorpayinstance = new razorpay({
