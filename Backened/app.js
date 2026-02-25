@@ -19,6 +19,10 @@ import productrouter from './routes/productroutes.js';
 import cartrouter from './routes/cartroutes.js';
 import orderrouter from './routes/orderroutes.js';
 
+app.get("/", (req, res) => {
+  res.send("Backend is running successfully 🚀");
+});
+
 app.use('/api/v1/users',userrouter);
 
 app.use('/api/v1/products',productrouter);
