@@ -42,7 +42,7 @@ function Collection() {
   }
 
   const applyfilter = (e)=>{
-    let productcopy = products.slice(0,10);
+    let productcopy = [...products];
 
     if(showsearch && search){
       productcopy = productcopy.filter(item=> item.name.toLowerCase().includes(search.toLowerCase()));
