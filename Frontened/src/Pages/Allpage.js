@@ -7,7 +7,7 @@ import Login from './Login';
 import Order from "./Order";
 import PlaceOrder from "./PlaceOrder";
 import Product from "./Product";
-import Verify from "./verify";
+import Verify from "./Verify";
 
 
 export{
